@@ -35,23 +35,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Request Runtime Permission
+        if (!checkPermissionFromDevice())
+            requestPermission();
+
         initInstances();
 
-        // From Android M, you need request Run-time permission
-        if (checkPermissionFromDevice()) {
+        btnStartRecord.setOnClickListener(btnStartRecordListener);
 
-            btnStartRecord.setOnClickListener(btnStartRecordListener);
+        btnStopRecord.setOnClickListener(btnStopRecordListener);
 
-            btnStopRecord.setOnClickListener(btnStopRecordListener);
+        btnStartPlay.setOnClickListener(btnStartPlayListener);
 
-            btnStartPlay.setOnClickListener(btnStartPlayListener);
-
-            btnStopPlay.setOnClickListener(btnStopPlayListener);
-
-
-        } else {
-            requestPermission();
-        }
+        btnStopPlay.setOnClickListener(btnStopPlayListener);
 
     }
 
@@ -102,22 +98,28 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener btnStartRecordListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            pathSave = Environment.getExternalStorageDirectory()
-                    .getAbsolutePath() + "/"
-                    + UUID.randomUUID().toString() + "_audio_record.3gp";
-            setupMediaRecorder();
-            try {
-                mediaRecorder.prepare();
-                mediaRecorder.start();
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            if (checkPermissionFromDevice()) {
+                pathSave = Environment.getExternalStorageDirectory()
+                        .getAbsolutePath() + "/"
+                        + UUID.randomUUID().toString() + "_audio_record.3gp";
+                setupMediaRecorder();
+                try {
+                    mediaRecorder.prepare();
+                    mediaRecorder.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // Set Disable button
+                btnStartPlay.setEnabled(false);
+                btnStopPlay.setEnabled(false);
+
+                Toast.makeText(MainActivity.this, "Recording...", Toast.LENGTH_SHORT).show();
+
+            } else {
+                requestPermission();
             }
-
-            // Set Disable button
-            btnStartPlay.setEnabled(false);
-            btnStopPlay.setEnabled(false);
-
-            Toast.makeText(MainActivity.this, "Recording...", Toast.LENGTH_SHORT).show();
         }
     };
 

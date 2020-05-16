@@ -24,7 +24,7 @@
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/btnStartRecord"
             android:layout_width="350dp"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             app:nb_backgroundColor="#ff8a80"
             app:nb_borderColor="#FFFFFF"
@@ -37,7 +37,7 @@
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/btnStopRecord"
             android:layout_width="350dp"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             app:nb_backgroundColor="#ff8a80"
@@ -60,7 +60,7 @@
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/btnStartPlay"
             android:layout_width="350dp"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             app:nb_backgroundColor="#64b5f6
 "
@@ -74,7 +74,7 @@
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/btnStopPlay"
             android:layout_width="350dp"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             app:nb_backgroundColor="#64b5f6"
