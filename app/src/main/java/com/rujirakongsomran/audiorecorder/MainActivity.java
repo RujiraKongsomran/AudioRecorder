@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
             btnStartPlay.setOnClickListener(btnStartPlayListener);
 
+            btnStopPlay.setOnClickListener(btnStopPlayListener);
 
 
         } else {
@@ -55,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupMediaRecorder() {
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        mediaRecorder.setOutputFile(pathSave);
     }
 
     @Override
@@ -145,6 +151,22 @@ public class MainActivity extends AppCompatActivity {
             }
             mediaPlayer.start();
             Toast.makeText(MainActivity.this, "Playing...", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    View.OnClickListener btnStopPlayListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            btnStopRecord.setEnabled(false);
+            btnStartRecord.setEnabled(true);
+            btnStartPlay.setEnabled(true);
+            btnStopPlay.setEnabled(false);
+
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                setupMediaRecorder();
+            }
         }
     };
 }
