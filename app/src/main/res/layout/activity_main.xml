@@ -1,18 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="180dp"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="RECORD AREA"
+            android:textSize="24sp" />
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/btnStartRecord"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            app:nb_backgroundColor="#ff8a80"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_focusColor="#B83CC3"
+            app:nb_radius="5dp"
+            app:nb_text="START RECORD"
+            app:nb_textColor="#FFF" />
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/btnStopRecord"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:nb_backgroundColor="#ff8a80"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_focusColor="#B83CC3"
+            app:nb_radius="5dp"
+            app:nb_text="STOP RECORD"
+            app:nb_textColor="#FFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:text="PLAY AREA"
+            android:textSize="24sp" />
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/btnStartPlay"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            app:nb_backgroundColor="#64b5f6
+"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_focusColor="#B83CC3"
+            app:nb_radius="5dp"
+            app:nb_text="PLAY"
+            app:nb_textColor="#FFF" />
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/btnStopPlay"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            app:nb_backgroundColor="#64b5f6"
+            app:nb_borderColor="#FFFFFF"
+            app:nb_borderWidth="2dp"
+            app:nb_focusColor="#B83CC3"
+            app:nb_radius="5dp"
+            app:nb_text="STOP"
+            app:nb_textColor="#FFF" />
+    </LinearLayout>
+
+
+</LinearLayout>
