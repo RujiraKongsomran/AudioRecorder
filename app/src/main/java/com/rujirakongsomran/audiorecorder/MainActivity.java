@@ -39,7 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
         // From Android M, you need request Run-time permission
         if (checkPermissionFromDevice()) {
+
             btnStartRecord.setOnClickListener(btnStartRecordListener);
+
+            btnStopRecord.setOnClickListener(btnStopRecordListener);
+
+            btnStartPlay.setOnClickListener(btnStartPlayListener);
+
 
 
         } else {
@@ -106,6 +112,39 @@ public class MainActivity extends AppCompatActivity {
             btnStopPlay.setEnabled(false);
 
             Toast.makeText(MainActivity.this, "Recording...", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    View.OnClickListener btnStopRecordListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            mediaRecorder.stop();
+
+            btnStartRecord.setEnabled(true);
+            btnStopRecord.setEnabled(false);
+
+            btnStartPlay.setEnabled(true);
+            btnStopPlay.setEnabled(false);
+        }
+    };
+
+    View.OnClickListener btnStartPlayListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            btnStopPlay.setEnabled(true);
+            btnStopRecord.setEnabled(false);
+            btnStartRecord.setEnabled(false);
+
+            mediaPlayer = new MediaPlayer();
+            try {
+                mediaPlayer.setDataSource(pathSave);
+                mediaPlayer.prepare();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mediaPlayer.start();
+            Toast.makeText(MainActivity.this, "Playing...", Toast.LENGTH_SHORT).show();
         }
     };
 }
