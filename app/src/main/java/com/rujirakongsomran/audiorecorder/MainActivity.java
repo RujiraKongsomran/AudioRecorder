@@ -10,9 +10,14 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
 import android.widget.Toast;
 
 import com.ornach.nobobutton.NoboButton;
+
+import java.io.IOException;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
     NoboButton btnStartRecord;
@@ -34,12 +39,16 @@ public class MainActivity extends AppCompatActivity {
 
         // From Android M, you need request Run-time permission
         if (checkPermissionFromDevice()) {
+            btnStartRecord.setOnClickListener(btnStartRecordListener);
 
 
         } else {
             requestPermission();
         }
 
+    }
+
+    private void setupMediaRecorder() {
     }
 
     @Override
@@ -76,4 +85,27 @@ public class MainActivity extends AppCompatActivity {
         btnStartPlay = (NoboButton) findViewById(R.id.btnStartPlay);
         btnStopPlay = (NoboButton) findViewById(R.id.btnStopPlay);
     }
+
+    // Listener Zone
+    View.OnClickListener btnStartRecordListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            pathSave = Environment.getExternalStorageDirectory()
+                    .getAbsolutePath() + "/"
+                    + UUID.randomUUID().toString() + "_audio_record.3gp";
+            setupMediaRecorder();
+            try {
+                mediaRecorder.prepare();
+                mediaRecorder.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // Set Disable button
+            btnStartPlay.setEnabled(false);
+            btnStopPlay.setEnabled(false);
+
+            Toast.makeText(MainActivity.this, "Recording...", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
